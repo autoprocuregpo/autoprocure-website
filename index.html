@@ -807,7 +807,6 @@
     <h2 class="section-title">Built by people who know this space</h2>
     <p class="section-body">AutoProcure brings together operators, investors, and procurement experts with deep roots in both the automotive industry and the GPO business.</p>
 
-    <div class="team-sublabel">Advisors</div>
     <div class="team-grid">
 
       <div class="team-card">
@@ -830,34 +829,7 @@
 
     </div>
 
-    <div class="team-sublabel">Team</div>
-    <div class="team-grid">
 
-      <div class="team-card">
-        <div class="team-avatar">DH</div>
-        <div class="team-info">
-          <h3>David Hirsch</h3>
-          <div class="role">Co-Founder</div>
-        </div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-avatar">PJ</div>
-        <div class="team-info">
-          <h3>Phil James</h3>
-          <div class="role">Co-Founder</div>
-        </div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-avatar">JB</div>
-        <div class="team-info">
-          <h3>Jonathan Bong</h3>
-          <div class="role">Head of Analytics</div>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -868,16 +840,12 @@
     <h2 class="section-title">Interested in joining our network?</h2>
     <p class="section-body">Programs launch Summer 2026. Reach out now to learn more, get a no-cost spend analysis, or reserve your spot in the founding dealer cohort.</p>
     <div class="contact-box">
-      <a href="mailto:sales@autoprocure.co" class="contact-email">sales@autoprocure.co</a>
+      <span class="contact-email" id="em"></span>
     </div>
     <br />
-    <a href="mailto:sales@autoprocure.co" class="contact-btn">Send us a message</a>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2026 AutoProcure. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+    <a href="#" id="eb" class="contact-btn">Send us a message</a>
+    <script>
+      var e = 'sales' + '@' + 'autoprocure.co';
+      document.getElementById('em').textContent = e;
+      document.getElementById('eb').href = 'mailto:' + e;
+    </script>
