@@ -4,6 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AutoProcure — The GPO for Franchised Dealerships</title>
+
+  <!-- SEO (P0 from design review) -->
+  <meta name="description" content="AutoProcure is the only group purchasing organization built exclusively for franchised dealerships. Join 200+ dealers saving on indirect spend with committed supplier programs and pre-negotiated contracts.">
+  <link rel="canonical" href="https://www.autoprocure.co/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.autoprocure.co/">
+  <meta property="og:title" content="AutoProcure — The GPO for Franchised Dealerships">
+  <meta property="og:description" content="Join 200+ dealerships. Committed supplier programs, pre-negotiated contracts, zero cost to join. Launching Summer 2026.">
+  <meta property="og:image" content="https://www.autoprocure.co/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AutoProcure — The GPO for Franchised Dealerships">
+  <meta name="twitter:description" content="Join 200+ dealerships. Committed supplier programs, pre-negotiated contracts, zero cost to join.">
+  <meta name="twitter:image" content="https://www.autoprocure.co/og-image.png">
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,6 +48,7 @@
       line-height: 1.7;
     }
 
+    /* ── NAV ── */
     nav {
       position: sticky;
       top: 0;
@@ -51,20 +70,18 @@
       letter-spacing: -0.5px;
       text-decoration: none;
     }
-
     .logo span { color: var(--accent); }
 
-    nav ul { list-style: none; display: flex; gap: 2rem; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
 
-    nav ul a {
+    .nav-links a {
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 400;
       color: var(--muted);
       transition: color 0.2s;
     }
-
-    nav ul a:hover { color: var(--navy); }
+    .nav-links a:hover { color: var(--navy); }
 
     .nav-cta {
       background: var(--accent);
@@ -72,11 +89,33 @@
       padding: 0.45rem 1.1rem;
       border-radius: 6px;
       font-weight: 500 !important;
+      transition: background 0.2s !important;
     }
+    .nav-cta:hover { background: var(--navy) !important; color: #fff !important; }
 
-    .nav-cta:hover { background: var(--navy) !important; }
+    /* Hamburger (P0) */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger-line {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       background: var(--navy);
       color: #fff;
@@ -86,7 +125,6 @@
       overflow: hidden;
     }
 
-    /* Abstract car/dealership SVG background */
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -125,9 +163,37 @@
       font-size: 1.05rem;
       color: #cbd5e1;
       max-width: 620px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1.5rem;
       line-height: 1.75;
       font-weight: 300;
+    }
+
+    /* Launch timing in hero (P2) */
+    .hero-launch-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #f59e0b;
+      font-weight: 500;
+      margin-bottom: 1.75rem;
+      letter-spacing: 0.03em;
+    }
+    .hero-launch-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #f59e0b;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    /* Dual CTAs (P1) */
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .hero-cta {
@@ -141,16 +207,29 @@
       font-size: 0.95rem;
       transition: background 0.2s, transform 0.15s;
     }
-
     .hero-cta:hover { background: #1d4ed8; transform: translateY(-1px); }
 
-    /* STATS BAR */
+    .hero-cta-ghost {
+      display: inline-block;
+      background: transparent;
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 400;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .hero-cta-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+    /* ── STATS BAR ── */
     .stats-bar {
       background: var(--navy-mid);
       padding: 1.5rem 2rem;
       display: flex;
       justify-content: center;
-      gap: 4rem;
+      gap: 3rem;
       flex-wrap: wrap;
     }
 
@@ -162,6 +241,7 @@
       color: #fff;
       display: block;
     }
+    .stat-number.amber { color: #f59e0b; }
 
     .stat-label {
       font-size: 0.78rem;
@@ -170,6 +250,100 @@
       letter-spacing: 0.08em;
     }
 
+    /* ── NETWORK CALLOUT (new section) ── */
+    .network-callout {
+      background: linear-gradient(135deg, #0b1e38 0%, #132d52 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .network-inner { max-width: 860px; margin: 0 auto; }
+
+    .network-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: #f59e0b;
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.73rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .network-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #f59e0b;
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+
+    .network-callout h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      color: #fff;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.3px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .network-callout p {
+      color: #94a3b8;
+      font-size: 0.97rem;
+      line-height: 1.8;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    .network-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      max-width: 640px;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .network-stat {
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+      padding: 1.75rem 1rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .network-stat:last-child { border-right: none; }
+
+    .network-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: #fff;
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .network-stat-num .amber { color: #f59e0b; }
+
+    .network-stat-label {
+      font-size: 0.76rem;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+    }
+
+    /* ── SHARED SECTION STYLES ── */
     section { padding: 5rem 2rem; }
     .container { max-width: 1040px; margin: 0 auto; }
 
@@ -199,7 +373,40 @@
       line-height: 1.75;
     }
 
-    /* VALUE */
+    /* ── SUPPLIER DIFFERENTIATION CALLOUT ── */
+    .diff-callout {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+    .diff-callout-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .diff-callout-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .diff-callout p {
+      font-size: 0.9rem;
+      color: #1e3a8a;
+      line-height: 1.65;
+      margin: 0;
+    }
+    .diff-callout strong { color: #1e40af; }
+
+    /* ── VALUE CARDS ── */
     #value { background: var(--bg-alt); }
 
     .value-grid {
@@ -217,103 +424,76 @@
       padding: 1.75rem;
     }
 
+    .value-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .value-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     .value-card h3 { font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; }
     .value-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 
-    /* HOW IT WORKS */
+    /* ── HOW IT WORKS (P2 step progression) ── */
     #how { background: var(--bg); }
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 0;
-      margin-top: 2.5rem;
-    }
-
-    .step {
-      padding: 1.5rem 2rem 1.5rem 0;
+      margin-top: 3rem;
       position: relative;
     }
 
-    .step:not(:last-child)::after {
+    /* Connecting line between numbered circles */
+    .steps::before {
       content: '';
       position: absolute;
-      right: 1rem;
-      top: 2rem;
-      width: 1px;
-      height: calc(100% - 4rem);
-      background: var(--border);
+      top: 25px;
+      left: calc(12.5% + 26px);
+      right: calc(12.5% + 26px);
+      height: 2px;
+      background: var(--accent-light);
+      z-index: 0;
     }
 
-    .step-number {
+    .step { padding: 0 1.5rem 1.5rem 0; position: relative; z-index: 1; }
+
+    .step-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      color: var(--accent-light);
-      line-height: 1;
-      margin-bottom: 0.75rem;
-      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--accent-light);
     }
 
     .step h3 { font-size: 0.95rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
     .step p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
-    /* ABOUT */
-    #about { background: var(--bg-alt); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .about-points {
-      list-style: none;
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-
-    .about-points li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .about-points li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      margin-top: 0.65rem;
-    }
-
-    .about-cards-stack { display: flex; flex-direction: column; gap: 1rem; }
-
-    .about-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem 2rem;
-    }
-
-    .about-card-number {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.8rem;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .about-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
-
-    /* ROLES */
-    #roles { background: var(--bg); }
+    /* ── ROLES ── */
+    #roles { background: var(--bg-alt); }
 
     .roles-grid {
       display: grid;
@@ -326,7 +506,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 2rem;
-      background: var(--bg-alt);
+      background: var(--bg);
       text-align: center;
     }
 
@@ -340,13 +520,12 @@
       justify-content: center;
       margin: 0 auto 1rem;
     }
-
     .role-icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
     .role-card h3 { font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
     .role-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
 
-    /* SERVICES */
+    /* ── SERVICES ── */
     #services { background: var(--bg-alt); }
 
     .services-header {
@@ -371,10 +550,8 @@
       font-weight: 500;
       white-space: nowrap;
     }
-
     .launch-dot {
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: #f59e0b;
       flex-shrink: 0;
@@ -394,12 +571,10 @@
       padding: 1.75rem;
       transition: border-color 0.2s, transform 0.2s;
     }
-
     .service-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 
     .service-icon {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       background: var(--accent-light);
       border-radius: 8px;
       margin-bottom: 1rem;
@@ -407,30 +582,19 @@
       align-items: center;
       justify-content: center;
     }
-
     .service-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
     .service-card h3 { font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; }
     .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 
-    /* TEAM */
+    /* ── TEAM ── */
     #team { background: var(--bg); }
-
-    .team-sublabel {
-      font-size: 0.72rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin: 2.25rem 0 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
 
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.25rem;
+      margin-top: 2.5rem;
     }
 
     .team-card {
@@ -444,8 +608,7 @@
     }
 
     .team-avatar {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       border-radius: 50%;
       background: var(--accent-light);
       color: var(--accent);
@@ -458,61 +621,79 @@
       font-family: 'DM Serif Display', serif;
       letter-spacing: 0.5px;
     }
-
     .team-avatar.advisor { background: #f0fdf4; color: #16a34a; }
 
     .team-info h3 { font-size: 0.95rem; font-weight: 500; color: var(--navy); margin-bottom: 0.2rem; }
-
-    .team-info .role {
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-    }
-
+    .team-info .role { font-size: 0.75rem; color: var(--accent); font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; }
     .team-info .role.advisor-role { color: #16a34a; }
 
-    /* CONTACT */
+    /* ── CONTACT ── */
     #contact { background: var(--navy); color: #fff; text-align: center; }
-
     #contact .section-title { color: #fff; }
     #contact .section-body { color: #94a3b8; margin: 0 auto 2rem; }
     #contact .section-label { color: #93c5fd; }
 
-    .contact-box {
-      display: inline-block;
+    /* Inline form (P1) */
+    .contact-form-wrap {
+      max-width: 520px;
+      margin: 0 auto 1.5rem;
+      text-align: left;
+    }
+
+    .contact-form {
       background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.13);
-      border-radius: 12px;
-      padding: 2rem 3rem;
-      margin-bottom: 1.75rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 2rem;
     }
 
-    .contact-email {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.65rem;
-      color: #93c5fd;
-      text-decoration: none;
-      display: block;
-      transition: color 0.2s;
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
     }
+    .form-row.full { grid-template-columns: 1fr; }
 
-    .contact-email:hover { color: #fff; }
+    .contact-form input {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 7px;
+      padding: 0.72rem 1rem;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-form input::placeholder { color: #475569; }
+    .contact-form input:focus { border-color: #3b82f6; background: rgba(255,255,255,0.11); }
 
-    .contact-btn {
-      display: inline-block;
+    .form-submit {
+      width: 100%;
       background: var(--accent);
       color: #fff;
-      text-decoration: none;
-      padding: 0.85rem 2.25rem;
-      border-radius: 6px;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 7px;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 500;
       font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 0.25rem;
       transition: background 0.2s, transform 0.15s;
     }
+    .form-submit:hover { background: #1d4ed8; transform: translateY(-1px); }
 
-    .contact-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .contact-fallback {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #334155;
+      margin-top: 1.25rem;
+    }
+    .contact-fallback a { color: #93c5fd; text-decoration: none; }
+    .contact-fallback a:hover { text-decoration: underline; }
 
     footer {
       background: #0a1728;
@@ -522,48 +703,114 @@
       font-size: 0.82rem;
     }
 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .steps::before { display: none; }
+    }
+
     @media (max-width: 700px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .stats-bar { gap: 2rem; }
-      nav ul { display: none; }
+      /* Hamburger */
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0; right: 0;
+        background: var(--navy);
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 0.8rem 0;
+        color: #cbd5e1 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        font-size: 1rem;
+      }
+      .nav-links li:last-child a { border-bottom: none; }
+      .nav-cta {
+        background: var(--accent) !important;
+        border-radius: 6px !important;
+        padding: 0.65rem 0 !important;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      /* Steps: vertical timeline on mobile */
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .steps::before { display: none; }
+      .steps::after {
+        content: '';
+        position: absolute;
+        left: 26px;
+        top: 52px;
+        bottom: 0;
+        width: 2px;
+        background: var(--accent-light);
+        z-index: 0;
+      }
+      .step {
+        padding: 0 0 0 4rem;
+        position: relative;
+      }
+      .step-circle {
+        position: absolute;
+        left: 0; top: 0;
+        margin-bottom: 0;
+      }
+
+      .stats-bar { gap: 1.5rem; }
       .services-header { flex-direction: column; align-items: flex-start; }
-      .step:not(:last-child)::after { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .network-stats { border-radius: 10px; }
+      .network-stat { min-width: 120px; padding: 1.25rem 0.75rem; }
+    }
+
+    @media (min-width: 701px) {
+      .nav-toggle { display: none; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="logo" href="#">Auto<span>Procure</span></a>
-  <ul>
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a class="logo" href="#" aria-label="AutoProcure home">Auto<span>Procure</span></a>
+  <ul class="nav-links" id="nav-links" role="list">
     <li><a href="#value">Why AutoProcure</a></li>
     <li><a href="#how">How it works</a></li>
     <li><a href="#services">Programs</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    <li><a href="#contact" class="nav-cta" aria-label="Get in touch with AutoProcure">Get in touch</a></li>
   </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-
-  <!-- Abstract dealership / car background -->
-  <svg class="hero-bg" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <!-- Ground line -->
+<section class="hero" aria-label="Hero">
+  <svg class="hero-bg" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
     <line x1="0" y1="480" x2="1200" y2="480" stroke="#fff" stroke-width="1"/>
-    <!-- Dealership building left -->
     <rect x="40" y="300" width="220" height="180" fill="none" stroke="#fff" stroke-width="1.5"/>
     <rect x="40" y="280" width="220" height="25" fill="none" stroke="#fff" stroke-width="1.5"/>
     <rect x="80" y="360" width="50" height="120" fill="none" stroke="#fff" stroke-width="1"/>
     <rect x="160" y="360" width="50" height="120" fill="none" stroke="#fff" stroke-width="1"/>
-    <!-- Showroom windows -->
     <rect x="50" y="310" width="195" height="60" fill="none" stroke="#fff" stroke-width="1"/>
     <line x1="115" y1="310" x2="115" y2="370" stroke="#fff" stroke-width="0.8"/>
     <line x1="180" y1="310" x2="180" y2="370" stroke="#fff" stroke-width="0.8"/>
-    <!-- Flag pole -->
     <line x1="150" y1="280" x2="150" y2="200" stroke="#fff" stroke-width="1"/>
     <polygon points="150,200 190,215 150,230" fill="none" stroke="#fff" stroke-width="1"/>
-    <!-- Dealership building right -->
     <rect x="940" y="320" width="200" height="160" fill="none" stroke="#fff" stroke-width="1.5"/>
     <rect x="940" y="300" width="200" height="25" fill="none" stroke="#fff" stroke-width="1.5"/>
     <rect x="960" y="375" width="45" height="105" fill="none" stroke="#fff" stroke-width="1"/>
@@ -571,7 +818,6 @@
     <rect x="950" y="330" width="175" height="55" fill="none" stroke="#fff" stroke-width="1"/>
     <line x1="1010" y1="330" x2="1010" y2="385" stroke="#fff" stroke-width="0.8"/>
     <line x1="1070" y1="330" x2="1070" y2="385" stroke="#fff" stroke-width="0.8"/>
-    <!-- Car 1 - sedan, center left -->
     <g transform="translate(320, 410)">
       <rect x="0" y="30" width="180" height="40" rx="6" fill="none" stroke="#fff" stroke-width="1.5"/>
       <path d="M30,30 Q50,5 80,2 Q120,0 145,30" fill="none" stroke="#fff" stroke-width="1.5"/>
@@ -579,10 +825,7 @@
       <circle cx="145" cy="72" r="16" fill="none" stroke="#fff" stroke-width="1.5"/>
       <circle cx="35" cy="72" r="6" fill="none" stroke="#fff" stroke-width="1"/>
       <circle cx="145" cy="72" r="6" fill="none" stroke="#fff" stroke-width="1"/>
-      <line x1="60" y1="30" x2="60" y2="10" stroke="#fff" stroke-width="0.8"/>
-      <line x1="115" y1="30" x2="115" y2="10" stroke="#fff" stroke-width="0.8"/>
     </g>
-    <!-- Car 2 - SUV, center right -->
     <g transform="translate(640, 400)">
       <rect x="0" y="25" width="200" height="55" rx="5" fill="none" stroke="#fff" stroke-width="1.5"/>
       <path d="M25,25 Q40,2 75,0 Q140,0 170,25" fill="none" stroke="#fff" stroke-width="1.5"/>
@@ -590,22 +833,16 @@
       <circle cx="160" cy="82" r="18" fill="none" stroke="#fff" stroke-width="1.5"/>
       <circle cx="40" cy="82" r="7" fill="none" stroke="#fff" stroke-width="1"/>
       <circle cx="160" cy="82" r="7" fill="none" stroke="#fff" stroke-width="1"/>
-      <line x1="70" y1="25" x2="70" y2="5" stroke="#fff" stroke-width="0.8"/>
-      <line x1="130" y1="25" x2="130" y2="5" stroke="#fff" stroke-width="0.8"/>
     </g>
-    <!-- Road markings -->
     <line x1="0" y1="500" x2="1200" y2="500" stroke="#fff" stroke-width="0.5" stroke-dasharray="40,30"/>
-    <!-- Perspective lines from horizon -->
     <line x1="600" y1="480" x2="0" y2="600" stroke="#fff" stroke-width="0.4" opacity="0.5"/>
     <line x1="600" y1="480" x2="1200" y2="600" stroke="#fff" stroke-width="0.4" opacity="0.5"/>
-    <!-- Small car far left -->
     <g transform="translate(100, 445)" opacity="0.5">
       <rect x="0" y="15" width="90" height="22" rx="3" fill="none" stroke="#fff" stroke-width="1"/>
       <path d="M12,15 Q20,3 40,2 Q65,2 78,15" fill="none" stroke="#fff" stroke-width="1"/>
       <circle cx="18" cy="38" r="8" fill="none" stroke="#fff" stroke-width="1"/>
       <circle cx="72" cy="38" r="8" fill="none" stroke="#fff" stroke-width="1"/>
     </g>
-    <!-- Small car far right -->
     <g transform="translate(1000, 445)" opacity="0.5">
       <rect x="0" y="15" width="90" height="22" rx="3" fill="none" stroke="#fff" stroke-width="1"/>
       <path d="M12,15 Q20,3 40,2 Q65,2 78,15" fill="none" stroke="#fff" stroke-width="1"/>
@@ -616,14 +853,25 @@
 
   <div class="hero-content">
     <div class="hero-eyebrow">The only GPO built for franchised dealerships</div>
-    <h1>Better pricing, better suppliers, and a procurement team in your corner</h1>
-    <p class="hero-sub">AutoProcure is the only group purchasing organization designed exclusively for franchised dealership owners and operators — delivering pre-negotiated contracts, vetted vendors, and hands-on support across the indirect spend categories that drive your costs up every day.</p>
-    <a href="#contact" class="hero-cta">Learn how it works</a>
+    <h1>Better pricing, committed suppliers, and a procurement team in your corner</h1>
+    <p class="hero-sub">AutoProcure is the only group purchasing organization designed exclusively for franchised dealership owners and operators — delivering committed supplier programs, pre-negotiated contracts, and hands-on support across the indirect spend categories that drive your costs up every day.</p>
+    <div class="hero-launch-note">
+      <span class="hero-launch-dot" aria-hidden="true"></span>
+      Founding dealer cohort now forming — Programs launch Summer 2026
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="hero-cta" aria-label="Get your free spend analysis">Get your free spend analysis</a>
+      <a href="#how" class="hero-cta-ghost">See how it works</a>
+    </div>
   </div>
 </section>
 
 <!-- STATS BAR -->
-<div class="stats-bar">
+<div class="stats-bar" role="region" aria-label="Key statistics">
+  <div class="stat">
+    <span class="stat-number amber">200+</span>
+    <span class="stat-label">Dealers in network</span>
+  </div>
   <div class="stat">
     <span class="stat-number">15–30%+</span>
     <span class="stat-label">Typical savings</span>
@@ -642,57 +890,104 @@
   </div>
 </div>
 
+<!-- NETWORK EFFECT CALLOUT -->
+<div class="network-callout" role="region" aria-label="Network strength and growth">
+  <div class="network-inner">
+    <div class="network-badge">
+      <span class="network-badge-dot" aria-hidden="true"></span>
+      Network already live
+    </div>
+    <h2>200+ dealerships in the group — and the benefits compound as we grow</h2>
+    <p>AutoProcure already has over 200 franchised dealerships in the network ahead of our program launch this summer. That collective purchasing volume is what unlocks the contract terms, committed supplier programs, and pricing tiers that no individual dealer could achieve alone. And the dynamic compounds: every dealer that joins strengthens our negotiating position and improves terms for the entire group — making AutoProcure more valuable to every member over time.</p>
+    <div class="network-stats" role="list">
+      <div class="network-stat" role="listitem">
+        <span class="network-stat-num"><span class="amber">200</span>+</span>
+        <span class="network-stat-label">Franchised dealers<br>in the group today</span>
+      </div>
+      <div class="network-stat" role="listitem">
+        <span class="network-stat-num">↑</span>
+        <span class="network-stat-label">Every new dealer<br>improves terms for all</span>
+      </div>
+      <div class="network-stat" role="listitem">
+        <span class="network-stat-num">∞</span>
+        <span class="network-stat-label">Compounding buying<br>power over time</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- WHY AUTOPROCURE -->
-<section id="value">
+<section id="value" aria-label="Why AutoProcure">
   <div class="container">
     <div class="section-label">Why AutoProcure</div>
     <h2 class="section-title">More than just lower prices</h2>
     <p class="section-body">Most dealerships overspend on indirect categories not because they aren't diligent — but because negotiating supplier contracts isn't their core business. AutoProcure changes that equation.</p>
+
+    <!-- Supplier-specific differentiator callout -->
+    <div class="diff-callout" role="note" aria-label="How AutoProcure differs from vendor-agnostic procurement">
+      <div class="diff-callout-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <p><strong>Committed supplier programs — not vendor-neutral advice.</strong> Unlike procurement consultants who evaluate a rotating pool of suppliers on your behalf, AutoProcure negotiates and commits to specific, best-in-class supplier programs in each category. You're not getting a shortlist — you're getting the deal we've already locked in on behalf of the entire network. We're accountable for the outcome, not just the process.</p>
+    </div>
+
     <div class="value-grid">
       <div class="value-card">
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
         <h3>Significant cost savings</h3>
-        <p>By aggregating spend across our dealer network, we unlock pricing and contract terms no single dealership could negotiate alone — with average savings of 15–30%+ across participating categories.</p>
+        <p>200+ dealers in the network creates purchasing scale no single rooftop can replicate — unlocking pricing and contract terms that typically deliver 15–30%+ savings across participating categories.</p>
       </div>
       <div class="value-card">
-        <h3>Vetted, high-quality suppliers</h3>
-        <p>We identify, evaluate, and onboard best-in-class vendors in each category. You're not just paying less — you're working with better, more reliable partners from day one.</p>
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Committed, best-in-class suppliers</h3>
+        <p>We don't hand you a list of vendors — we've already selected and locked in the best provider in each category. Better suppliers, better reliability, and SLAs we're on the hook for.</p>
       </div>
       <div class="value-card">
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
         <h3>Guaranteed service levels</h3>
-        <p>Our contracts include SLA commitments that protect your operations — agreed delivery windows, reliability standards, and clear recourse when vendors fall short.</p>
+        <p>Every program includes SLA commitments — agreed delivery windows, reliability standards, and clear recourse when a supplier falls short.</p>
       </div>
       <div class="value-card">
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
         <h3>An extension of your team</h3>
-        <p>Think of AutoProcure as an outsourced procurement and finance function. We handle vendor management, benchmarking, and contract renewals so your team stays focused on selling and servicing cars.</p>
+        <p>We handle vendor management, benchmarking, and contract renewals — so your team stays focused on selling and servicing cars, not chasing suppliers.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how">
+<section id="how" aria-label="How it works">
   <div class="container">
     <div class="section-label">How it works</div>
     <h2 class="section-title">Simple to join. Immediate impact.</h2>
     <p class="section-body">Onboarding is easy, involves no upfront cost, and carries no risk. Most members see savings within their first billing cycle.</p>
-    <div class="steps">
-      <div class="step">
-        <span class="step-number">01</span>
+    <div class="steps" role="list">
+      <div class="step" role="listitem">
+        <div class="step-circle" aria-label="Step 1">01</div>
         <h3>Spend analysis</h3>
         <p>We review your current indirect spend across target categories and quantify your savings opportunity — at no cost and no commitment.</p>
       </div>
-      <div class="step">
-        <span class="step-number">02</span>
+      <div class="step" role="listitem">
+        <div class="step-circle" aria-label="Step 2">02</div>
         <h3>Program matching</h3>
         <p>We match you to the right pre-negotiated supplier contracts across your highest-impact spend categories.</p>
       </div>
-      <div class="step">
-        <span class="step-number">03</span>
+      <div class="step" role="listitem">
+        <div class="step-circle" aria-label="Step 3">03</div>
         <h3>Fast onboarding</h3>
         <p>Our implementation team handles the transition and gets you live quickly with minimal disruption to your operations.</p>
       </div>
-      <div class="step">
-        <span class="step-number">04</span>
+      <div class="step" role="listitem">
+        <div class="step-circle" aria-label="Step 4">04</div>
         <h3>Ongoing management</h3>
         <p>We monitor supplier performance, track your savings, and renegotiate contracts on your behalf over time.</p>
       </div>
@@ -701,28 +996,28 @@
 </section>
 
 <!-- WHO BENEFITS -->
-<section id="roles">
+<section id="roles" aria-label="Who benefits">
   <div class="container">
     <div class="section-label">Who benefits</div>
     <h2 class="section-title">Built for every stakeholder at your dealership</h2>
     <p class="section-body">AutoProcure delivers value across the organization — from the people managing day-to-day operations to those responsible for the bottom line.</p>
     <div class="roles-grid">
       <div class="role-card">
-        <div class="role-icon">
+        <div class="role-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
         </div>
         <h3>Fixed Ops & Service</h3>
         <p>Reliable supply of the consumables, lubricants, and shop essentials your service lanes depend on — with SLA-backed delivery you can count on.</p>
       </div>
       <div class="role-card">
-        <div class="role-icon">
+        <div class="role-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
         <h3>Finance & Accounting</h3>
-        <p>Documented savings tracked against your historical spend, with visibility into where costs are being reduced across every category.</p>
+        <p>Documented savings tracked against your historical spend, with full visibility into where costs are being reduced across every category.</p>
       </div>
       <div class="role-card">
-        <div class="role-icon">
+        <div class="role-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
         <h3>Dealer Principals & GMs</h3>
@@ -733,119 +1028,149 @@
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" aria-label="Spend programs">
   <div class="container">
     <div class="services-header">
       <div>
         <div class="section-label">Spend programs</div>
         <h2 class="section-title" style="margin-bottom:0;">Categories we manage for you</h2>
       </div>
-      <div class="launch-badge">
-        <div class="launch-dot"></div>
+      <div class="launch-badge" role="status">
+        <div class="launch-dot" aria-hidden="true"></div>
         Programs launching Summer 2026
       </div>
     </div>
-    <p class="section-body" style="margin-bottom: 1.5rem;">We focus on the indirect categories every dealership buys regularly — and where most are significantly overpaying. All programs include pre-negotiated pricing, vetted suppliers, and SLA-backed contracts.</p>
+    <p class="section-body" style="margin-bottom: 1.5rem;">We focus on the indirect categories every dealership buys regularly — and where most are significantly overpaying. Every program features a committed, pre-selected supplier — not a menu of options to evaluate. Pre-negotiated pricing, SLA-backed contracts, and a dedicated supplier relationship managed on your behalf.</p>
     <div class="services-grid">
-
       <div class="service-card">
-        <div class="service-icon">
+        <div class="service-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><circle cx="7" cy="7" r="1.5" fill="#2563eb" stroke="none"/></svg>
         </div>
         <h3>Shop supplies</h3>
-        <p>Gloves, rags, cleaners, fasteners, and safety equipment — the everyday service department consumables that add up fast across every rooftop.</p>
+        <p>Gloves, rags, cleaners, fasteners, and safety equipment — everyday service department consumables that add up fast across every rooftop.</p>
       </div>
-
       <div class="service-card">
-        <div class="service-icon">
+        <div class="service-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 6v4l3 3"/></svg>
         </div>
         <h3>Oil & lubricants</h3>
-        <p>Covering non-OEM oil and lubricant spend — motor oil, transmission fluid, hydraulic fluid, and grease — where consolidated purchasing drives meaningful savings outside your franchise agreements.</p>
+        <p>Non-OEM motor oil, transmission fluid, hydraulic fluid, and grease — meaningful savings outside your franchise agreements through group volume.</p>
       </div>
-
       <div class="service-card">
-        <div class="service-icon">
+        <div class="service-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
         </div>
         <h3>Parcel & shipping</h3>
         <p>Parts returns, inter-store transfers, and vendor shipments — preferred rates with major carriers negotiated on your behalf.</p>
       </div>
-
       <div class="service-card">
-        <div class="service-icon">
+        <div class="service-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
         </div>
         <h3>Office supplies</h3>
-        <p>Paper, printer supplies, breakroom essentials, and more — standardized contracts across brands you already use.</p>
+        <p>Paper, printer supplies, breakroom essentials, and more — standardized contracts across the brands you already use.</p>
       </div>
-
       <div class="service-card">
-        <div class="service-icon">
+        <div class="service-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
         </div>
         <h3>Uniforms & workwear</h3>
         <p>Service advisor and technician uniforms, including sourcing, embroidery, and laundry service contracts.</p>
       </div>
-
       <div class="service-card">
-        <div class="service-icon">
+        <div class="service-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         </div>
         <h3>Additional categories</h3>
         <p>We're continuously expanding our program portfolio. If you're spending on it regularly, we can likely negotiate a better deal on your behalf.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- TEAM -->
-<section id="team">
+<section id="team" aria-label="Our team">
   <div class="container">
     <div class="section-label">Our team</div>
     <h2 class="section-title">Built by people who know this space</h2>
     <p class="section-body">AutoProcure brings together operators, investors, and procurement experts with deep roots in both the automotive industry and the GPO business.</p>
-
     <div class="team-grid">
-
       <div class="team-card">
-        <div class="team-avatar advisor">BM</div>
+        <div class="team-avatar advisor" aria-hidden="true">BM</div>
         <div class="team-info">
           <h3>Billy Medof</h3>
           <div class="role advisor-role">Advisor</div>
           <p style="font-size:0.83rem;color:var(--muted);margin-top:0.4rem;line-height:1.55;">Former CEO of Procure Analytics, the largest manufacturing GPO in North America with over $2 billion in annual purchasing volume.</p>
         </div>
       </div>
-
       <div class="team-card">
-        <div class="team-avatar advisor">RW</div>
+        <div class="team-avatar advisor" aria-hidden="true">RW</div>
         <div class="team-info">
           <h3>Rob Wagman</h3>
           <div class="role advisor-role">Advisor</div>
           <p style="font-size:0.83rem;color:var(--muted);margin-top:0.4rem;line-height:1.55;">Former CEO of LKQ Corporation, the leading provider of alternative and specialty parts for the automotive aftermarket.</p>
         </div>
       </div>
-
     </div>
-
-
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" aria-label="Get started">
   <div class="container">
     <div class="section-label">Get started</div>
-    <h2 class="section-title">Interested in joining our network?</h2>
-    <p class="section-body">Programs launch Summer 2026. Reach out now to learn more, get a no-cost spend analysis, or reserve your spot in the founding dealer cohort.</p>
-    <div class="contact-box">
-      <span class="contact-email" id="em"></span>
+    <h2 class="section-title">Join the founding dealer cohort</h2>
+    <p class="section-body">Programs launch Summer 2026. Reach out now for a no-cost spend analysis, to learn more, or to reserve your spot in the founding cohort.</p>
+
+    <div class="contact-form-wrap">
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" aria-label="Get started contact form">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name" required aria-label="Your name" autocomplete="name">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address" autocomplete="email">
+        </div>
+        <div class="form-row">
+          <input type="text" name="dealership" placeholder="Dealership name" aria-label="Dealership name" autocomplete="organization">
+          <input type="number" name="locations" placeholder="# of rooftops" min="1" aria-label="Number of locations">
+        </div>
+        <div class="form-row full">
+          <input type="text" name="message" placeholder="Anything you'd like us to know (optional)" aria-label="Additional message">
+        </div>
+        <button type="submit" class="form-submit" aria-label="Submit and get your free spend analysis">Get your free spend analysis →</button>
+      </form>
+      <p class="contact-fallback">
+        Prefer email? Reach us at <a href="#" id="email-link" aria-label="Email AutoProcure"><span id="em"></span></a>
+      </p>
     </div>
-    <br />
-    <a href="#" id="eb" class="contact-btn">Send us a message</a>
-    <script>
-      var e = 'sales' + '@' + 'autoprocure.co';
-      document.getElementById('em').textContent = e;
-      document.getElementById('eb').href = 'mailto:' + e;
-    </script>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 AutoProcure. All rights reserved.</p>
+</footer>
+
+<script>
+  // Anti-spam email construction
+  var e = 'sales' + '@' + 'autoprocure.co';
+  document.getElementById('em').textContent = e;
+  document.getElementById('email-link').href = 'mailto:' + e;
+
+  // Mobile hamburger nav
+  var toggle = document.getElementById('nav-toggle');
+  var navLinks = document.getElementById('nav-links');
+
+  toggle.addEventListener('click', function () {
+    var isOpen = navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Close nav when a link is tapped on mobile
+  navLinks.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      navLinks.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
